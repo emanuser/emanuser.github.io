@@ -1,62 +1,700 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#0b1620">
-<meta name="description" content="The Test Bench: independent, evidence-first AI reliability and multimodal evaluation experiments by Thomas Dolgos.">
-<link rel="canonical" href="https://emanuser.github.io/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Test Bench — Thomas Dolgos">
-<meta property="og:description" content="Independent AI reliability experiments. Find the frame. Verify the failure.">
-<meta property="og:url" content="https://emanuser.github.io/">
-<title>The Test Bench — Thomas Dolgos</title>
-<style>
-:root{color-scheme:dark;--bg:#0b1620;--surface:#142330;--edge:#2d4454;--text:#e8f2f5;--muted:#b5cbd2;--accent:#75ecdf;--button:#1b675e}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(155deg,#0b1620 4%,#112837 65%,#0b1620);color:var(--text);font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}
-a{color:var(--accent)}a:hover{color:white}.wrap{width:min(1090px,calc(100% - 38px));margin:auto}
-header{border-bottom:1px solid var(--edge);background:#0b1620ee}nav{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:76px;flex-wrap:wrap}.brand{font-weight:800;letter-spacing:.04em;color:white;text-decoration:none}.brand span{color:var(--accent)}
-.links{display:flex;gap:20px;flex-wrap:wrap}.links a{text-decoration:none;color:var(--muted);font-size:.92rem}
-.hero{padding:93px 0 68px}.eyebrow{color:var(--accent);font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;font-weight:800}
-h1{max-width:840px;font-size:clamp(2.7rem,6vw,5rem);line-height:1.09;letter-spacing:-.045em;margin:16px 0 23px}h1 em{font-style:normal;color:var(--accent)}
-.lede{max-width:760px;font-size:1.21rem;color:var(--muted)}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:29px}.button{padding:11px 17px;border-radius:10px;border:1px solid #377e79;color:white;text-decoration:none;font-weight:700;background:var(--button)}
-.button.outline{background:transparent;border-color:var(--edge)}
-section{padding:28px 0 58px}h2{font-size:clamp(1.5rem,3vw,2.15rem);letter-spacing:-.025em;margin:0 0 9px}
-.section-intro{color:var(--muted);margin:0 0 27px;max-width:780px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}
-.card{border:1px solid var(--edge);border-radius:15px;padding:25px;background:var(--surface);display:flex;flex-direction:column;gap:13px}
-.card h3{font-size:1.23rem;line-height:1.3;margin:0}.card p{color:var(--muted);margin:0;flex:1}.card a{font-weight:720;text-underline-offset:5px}.tag{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
-.note{border-left:3px solid var(--accent);background:#132b34;padding:18px 23px;border-radius:0 12px 12px 0;color:var(--muted)}
-footer{border-top:1px solid var(--edge);padding:26px 0 40px;color:var(--muted);font-size:.88rem}
-@media(max-width:600px){.hero{padding:63px 0 40px}nav{padding:13px 0}.links{gap:12px}}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a1115">
+  <meta name="description" content="The Test Bench by Tom Dolgos — multimodal AI evaluation, adversarial benchmarks, computer vision, and engineering reliability. Build it. Break it. Prove it.">
+  <meta name="author" content="Tom Dolgos">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Test Bench — Tom Dolgos">
+  <meta property="og:description" content="Experiments in multimodal AI evaluation, computer vision, adversarial benchmarks, and engineering reliability. Evidence first; verdicts second.">
+  <meta property="og:url" content="https://emanuser.github.io/">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <link rel="canonical" href="https://emanuser.github.io/">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTMiIGZpbGw9IiMwYTExMTUiLz48cmVjdCB4PSI2LjUiIHk9IjYuNSIgd2lkdGg9IjUxIiBoZWlnaHQ9IjUxIiByeD0iOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNDA1NjVhIi8+PGcgc3Ryb2tlPSIjYjJmM2NiIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik0xNiAyMFYxNUg0OFYyME0zMiAxNVY0OU0xOSAzM0g0NU0xNiA0NFY0OUg0OFY0NCIvPjwvZz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMzIiByPSI0IiBmaWxsPSIjZjRiODc0Ii8+PC9zdmc+Cg==">
+  <style>
+:root {
+  --bg: #0a1115;
+  --bg-soft: #0e191d;
+  --panel: #112025;
+  --panel-deep: #0d171b;
+  --panel-alt: #16282b;
+  --line: #26383c;
+  --line-bright: #3c5759;
+  --paper: #edede4;
+  --muted: #9aaead;
+  --muted-dim: #788f91;
+  --mint: #b3f2cd;
+  --cyan: #8bdace;
+  --orange: #f4b874;
+  --font-text: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+body { margin: 0; background: var(--bg); color: var(--paper); font-family: var(--font-text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--mint); outline-offset: 5px; }
+::selection { background: var(--mint); color: var(--bg); }
+[hidden] { display: none !important; }
+.container { width: min(1280px, calc(100% - 88px)); margin-inline: auto; }
+.ambient-grid { position: absolute; top: 0; left: 0; right: 0; height: 915px; pointer-events: none; background: radial-gradient(ellipse at 72% 42%, rgba(53,117,111,.15), transparent 45%), radial-gradient(ellipse at 5% 7%, rgba(63,99,96,.14), transparent 38%), linear-gradient(90deg, rgba(154,201,187,.022) 1px, transparent 1px), linear-gradient(rgba(154,201,187,.022) 1px, transparent 1px); background-size: auto, auto, 80px 80px, 80px 80px; mask-image: linear-gradient(black 45%, transparent 100%); z-index: -1; }
+.skip-link { position: absolute; z-index: 1000; top: -60px; left: 24px; padding: 12px 18px; background: var(--mint); color: var(--bg); font-weight: 700; }
+.skip-link:focus { top: 16px; }
+
+/* Primary navigation */
+.site-header { height: 90px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(133,166,163,.2); background: rgba(10,17,21,.9); backdrop-filter: blur(17px); -webkit-backdrop-filter: blur(17px); }
+.header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+.brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.brand-icon { width: 39px; height: 39px; display: grid; place-items: center; border: 1px solid var(--mint); color: var(--mint); background: rgba(179,242,205,.045); }
+.brand-icon svg { width: 30px; height: 30px; }
+.brand-copy { display: grid; gap: 5px; }
+.brand-copy strong { font-size: 15px; font-weight: 830; letter-spacing: .045em; line-height: 1; }
+.brand-copy span { font-family: var(--font-mono); font-size: 8px; color: var(--muted-dim); letter-spacing: .045em; white-space: nowrap; }
+.site-nav { display: flex; gap: clamp(16px, 2.3vw, 33px); align-items: center; }
+.site-nav a { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: #bdcaca; letter-spacing: .035em; white-space: nowrap; padding-block: 14px; transition: color .18s ease; }
+.site-nav a:hover { color: var(--mint); }
+.site-nav a span { font-size: 9px; margin-left: 3px; color: #6d8888; }
+.site-nav .nav-external { color: var(--mint); margin-left: 8px; display: inline-flex; gap: 6px; align-items: center; }
+.arrow-icon { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: square; stroke-linejoin: miter; flex: none; }
+.nav-external .arrow-icon { width: 15px; height: 15px; }
+.menu-toggle { display: none; }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.06fr) minmax(0, .94fr); gap: clamp(36px, 5vw, 82px); min-height: 688px; padding-block: 106px 95px; align-items: center; }
+.hero-copy { position: relative; z-index: 1; }
+.eyebrow, .section-index { display: flex; flex-wrap: wrap; align-items: center; column-gap: 11px; row-gap: 7px; font: 700 11px/1.4 var(--font-mono); letter-spacing: .12em; color: var(--mint); }
+.square-led { display: inline-block; width: 8px; height: 8px; background: var(--mint); box-shadow: 0 0 11px rgba(179,242,205,.23); flex: none; }
+.eyebrow-divider { color: #4f7273; margin-inline: 2px; }
+h1,h2,h3,p { margin-top: 0; }
+h1 { margin-bottom: 32px; margin-top: 25px; font-size: clamp(63px, 6.55vw, 103px); font-weight: 850; line-height: .965; letter-spacing: -.082em; white-space: nowrap; }
+.hero-accent { color: var(--mint); }
+.period, .title-dot { color: var(--orange); }
+.hero-intro { max-width: 510px; font-size: clamp(19px,2vw,24px); font-weight: 560; line-height: 1.42; letter-spacing: -.034em; margin: 0 0 17px; }
+.hero-detail { max-width: 470px; color: var(--muted); font-size: 15px; line-height: 1.7; }
+.hero-buttons { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-top: 34px; }
+.button { min-height: 49px; display: inline-flex; justify-content: center; align-items: center; gap: 22px; padding: 0 20px; font: 750 11px var(--font-mono); letter-spacing: .04em; transition: background .18s, color .18s, transform .18s, border-color .18s; }
+.button:hover { transform: translateY(-2px); }
+.button-primary { background: var(--mint); color: #091513; }
+.button-primary:hover { background: #d0ffdf; }
+.button-text { padding-inline: 0; color: #d3ddda; gap: 11px; }
+.button-text:hover { color: var(--mint); }
+.button-outline { border: 1px solid #6a8c88; color: var(--mint); width: fit-content; }
+.button-outline:hover { background: rgba(179,242,205,.08); border-color: var(--mint); }
+.hero-meta { margin-top: 77px; display: flex; align-items: start; flex-wrap: wrap; gap: clamp(26px,3.4vw,52px); }
+.hero-meta div { display: grid; gap: 8px; }
+.hero-meta span, .hero-meta strong { font: 10px var(--font-mono); letter-spacing: .06em; }
+.hero-meta span { color: #748e8f; }
+.hero-meta strong { color: #d9e6e0; font-weight: 600; }
+.hero-instrument { align-self: center; border: 1px solid #375053; background: linear-gradient(137deg, #15282b 0%, #0d1b20 50%, #0b181c 100%); box-shadow: 15px 20px 0 rgba(0,0,0,.13), 0 32px 100px rgba(0,0,0,.2); min-width: 0; }
+.instrument-top, .instrument-foot, .instrument-results { display: flex; justify-content: space-between; align-items: center; }
+.instrument-top { padding: 20px 21px; border-bottom: 1px solid #34474b; font: 10px var(--font-mono); letter-spacing: .035em; color: #a5c5be; }
+.instrument-top span:first-child { display: flex; gap: 9px; align-items: center; }
+.instrument-top > span:last-child { color: #7d9798; }
+.signal-led { background: #c6edbe; width: 7px; height: 7px; display: inline-block; border-radius: 50%; box-shadow: 0 0 9px #78d19c; }
+.instrument-squares { margin-left: 5px; letter-spacing: 1px; color: #f4b874; }
+.instrument-screen { padding: 23px 18px 16px; }
+.screen-labels, .screen-bottom { display: flex; justify-content: space-between; font: 10px var(--font-mono); letter-spacing: .045em; color: #8eacaa; padding-inline: 1px; }
+.screen-labels { padding-bottom: 15px; }
+.waveform { display: block; width: 100%; height: clamp(230px,25vw,300px); border: 1px solid #2c5255; background: #081b1d; box-shadow: inset 0 0 30px #061517; }
+.screen-bottom { justify-content: flex-start; flex-wrap: wrap; gap: 20px; padding-top: 13px; color: #adbbb7; font-size: 9px; }
+.screen-bottom > span { display: inline-flex; align-items: center; gap: 7px; }
+.screen-bottom .screen-unit { margin-left: auto; color: #778f91; }
+.legend-line { width: 14px; height: 2px; display: inline-block; }
+.legend-line.mint { background: var(--mint); }
+.legend-line.orange { background: var(--orange); }
+.instrument-results { border-top: 1px solid #33484b; border-bottom: 1px solid #33484b; }
+.instrument-results div { flex: 1; padding: 18px 8px 18px 20px; min-width: 0; display: grid; gap: 9px; }
+.instrument-results div + div { border-left: 1px solid #33484b; }
+.instrument-results span { font: 9px var(--font-mono); color: #8da5a4; white-space: nowrap; }
+.instrument-results strong { font: 13px var(--font-mono); color: var(--mint); letter-spacing: .07em; }
+.instrument-foot { padding: 18px 21px; font: 10px var(--font-mono); color: #819c9b; }
+.instrument-foot > span:last-child { color: var(--orange); }
+.instrument-foot > span:last-child span { font-size: 15px; }
+.reference-wave { stroke-dasharray: 8 0; }
+
+/* Section rhythm */
+.marquee-line { border-block: 1px solid var(--line); background: #101b1e; }
+.marquee-inner { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding-block: 16px; font: 10px var(--font-mono); letter-spacing: .08em; color: #99b2ad; white-space: nowrap; }
+.marquee-cross { color: var(--mint); font-size: 12px; }
+.section { padding-block: 124px; }
+.section-intro { display: flex; align-items: end; justify-content: space-between; gap: 56px; margin-bottom: 48px; }
+.section-index { font-size: 11px; color: var(--mint); margin-bottom: 22px; letter-spacing: .09em; }
+.section-index span { color: #557879; }
+h2 { font-size: clamp(41px, 5vw, 68px); line-height: 1.05; font-weight: 810; letter-spacing: -.065em; margin: 0; }
+.muted-word { color: #819894; }
+.section-intro > p { color: var(--muted); font-size: 15px; max-width: 360px; line-height: 1.68; margin: 0 0 5px; }
+
+/* Project cards */
+.projects-grid { display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); gap: 17px; }
+.project-card { min-width: 0; border: 1px solid #2f494b; background: linear-gradient(135deg,#112225 0%,#0d1a1e 100%); display: flex; flex-direction: column; overflow: hidden; transition: border-color .2s ease, transform .2s ease; }
+.project-card:hover { border-color: #597877; transform: translateY(-2px); }
+.project-featured { grid-column: span 7; min-height: 580px; }
+.project-sprocket { grid-column: span 5; min-height: 580px; background: linear-gradient(145deg,#1a2728 0%,#101c1f 80%); }
+.project-topline { display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 1px solid #314547; padding: 22px 24px; font: 10px var(--font-mono); color: #a7b8b4; letter-spacing: .045em; }
+.state { white-space: nowrap; display: inline-flex; align-items: center; gap: 7px; font: 9px var(--font-mono); letter-spacing: .025em; }
+.state-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.state-live { color: var(--mint); }
+.state-test { color: var(--orange); }
+.state-concept { color: #8baba8; }
+.project-body { flex: 1; display: grid; grid-template-rows: auto 1fr; }
+.project-description { padding: 26px 29px 25px; }
+.project-description h3 { margin-bottom: 17px; font-size: clamp(36px, 4.4vw, 58px); line-height: .96; letter-spacing: -.065em; font-weight: 800; }
+.project-description p, .small-project-text p { color: var(--muted); font-size: 14px; line-height: 1.67; max-width: 420px; margin-bottom: 20px; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.project-tags span { border: 1px solid #3c5353; padding: 7px 8px; color: #a7c2b9; font: 9px var(--font-mono); letter-spacing: .025em; }
+.visual-video { align-self: end; margin: 0 24px 27px; border: 1px solid #3c5758; background: #0b171a; min-width: 0; }
+.video-top, .video-bottom { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; gap: 8px; font: 9px var(--font-mono); color: #9ebeb6; letter-spacing: .045em; }
+.video-top { border-bottom: 1px solid #284347; }
+.video-demo { display: block; width: 100%; height: clamp(150px,18.5vw,220px); }
+.video-timeline { display: flex; align-items: center; gap: 9px; padding: 2px 12px 12px; }
+.video-timeline .tick { width: 7px; height: 7px; background: var(--mint); }
+.timeline-bar { height: 3px; background: #37545a; display: block; flex: 1; }
+.timeline-bar i { display: block; height: 3px; width: 58%; background: var(--mint); }
+.timecode { color: #a4b9b7; font: 9px var(--font-mono); }
+.video-bottom { border-top: 1px solid #294347; color: #8ca6a4; }
+.video-bottom span:last-child { color: var(--orange); }
+.mini-square { display: inline-block; width: 6px; height: 6px; background: var(--mint); margin-right: 5px; }
+.project-footer { border-top: 1px solid #314547; padding: 19px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.project-caption { font: 9px var(--font-mono); letter-spacing: .03em; color: #819a98; }
+.arrow-link { display: inline-flex; gap: 8px; align-items: center; font: 10px var(--font-mono); color: var(--mint); font-weight: 750; transition: color .18s; }
+.arrow-link:hover { color: white; }
+.arrow-link span { font-size: 15px; }
+.sprocket-symbol { display: inline-block; font-size: .58em; vertical-align: top; color: var(--orange); margin-top: 1px; transform: rotate(-16deg); }
+.project-sprocket .project-description { flex: 1; }
+.project-sprocket .project-description h3 { margin-bottom: 18px; }
+.project-sprocket .project-description p { max-width: 390px; }
+.terminal-card { background: #091719; border: 1px solid #384f4f; margin: 8px 24px 27px; }
+.terminal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2d4444; padding: 12px 14px; font: 9px var(--font-mono); color: #8da8a4; }
+.terminal-header > span:first-child { display: flex; gap: 5px; }
+.terminal-header i { width: 7px; height: 7px; border: 1px solid #718b89; border-radius: 50%; display: block; }
+.terminal-header i:first-child { border-color: var(--orange); background: rgba(244,184,116,.45); }
+.terminal-lines { padding: 20px 16px 12px; color: #b9d0c7; font: 10px/1.4 var(--font-mono); }
+.terminal-lines p { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 13px; }
+.terminal-lines .prompt { color: var(--mint); font-size: 14px; margin-right: 4px; }
+.terminal-lines .terminal-dim { color: #688789; margin-right: 5px; }
+.terminal-lines strong { font-weight: 700; margin-left: auto; color: #e8f5e9; }
+.terminal-lines .terminal-ok { color: var(--mint); margin-left: auto; }
+.terminal-lines .terminal-cursor { color: var(--mint); margin-bottom: 0; }
+.terminal-cursor > span { display: inline-block; height: 9px; width: 6px; background: var(--mint); opacity: .8; animation: cursor-blink 1.1s steps(1) infinite; }
+@keyframes cursor-blink { 50% { opacity: .15; } }
+.project-small { grid-column: span 6; min-height: 341px; }
+.project-small .project-topline { padding: 20px 24px; }
+.small-project-visual { height: 119px; position: relative; overflow: hidden; padding: 9px 28px 0; background: linear-gradient(90deg,transparent,#172b2e 50%,transparent); }
+.small-project-visual svg { width: 100%; height: 95px; display: block; }
+.small-project-visual > span { position: absolute; left: 29px; bottom: 0px; font: 9px var(--font-mono); color: #a3a8a3; letter-spacing: .065em; }
+.small-project-text { flex: 1; padding: 24px 27px; border-top: 1px solid #2d4244; }
+.small-project-text h3 { margin-bottom: 9px; font-size: 31px; letter-spacing: -.05em; }
+.small-project-text p { max-width: 470px; font-size: 13px; margin-bottom: 15px; }
+.concept-note { color: var(--orange); font: 9px var(--font-mono); letter-spacing: .04em; }
+.network-visual { background: linear-gradient(110deg,#0e2425,#13272a 56%,#0e2425); }
+
+
+/* Evidence-grounded portfolio project */
+.project-harness { grid-column: span 12; min-height: 0; background: linear-gradient(120deg,#162927,#102022 65%,#0c1b1d); }
+.harness-content { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); gap: 35px; padding: 34px 29px 35px; align-items: center; }
+.harness-copy h3 { font-size: clamp(35px,4.2vw,56px); letter-spacing: -.064em; line-height: .97; font-weight: 810; margin: 0 0 23px; }
+.harness-copy p { color: var(--muted); font-size: 14px; line-height: 1.74; max-width: 575px; margin: 0 0 24px; }
+.harness-flow { min-width: 0; display: grid; gap: 7px; }
+.harness-step { display: flex; align-items: center; gap: 14px; padding: 13px 16px; border: 1px solid #385852; background: #0b1a1d; font: 10px var(--font-mono); }
+.harness-step > span { color: var(--orange); }
+.harness-step strong { color: var(--mint); letter-spacing: .035em; font-weight: 700; }
+.harness-step small { color: #93aca6; font: 9px var(--font-mono); margin-left: auto; text-align: right; }
+.harness-caption { color: #84a9a0; font: 10px/1.5 var(--font-mono); margin: 9px 0 0; }
+
+
+/* AI Search / Product Match Bench — a live, experimental companion service */
+.project-product { grid-column: span 12; background: linear-gradient(125deg,#132c2a 0%,#0e2025 54%,#111d26 100%); }
+.product-content { display: grid; grid-template-columns: minmax(0,1.04fr) minmax(0,.96fr); align-items: center; gap: 38px; padding: 35px 29px 36px; }
+.product-copy h3 { font-size: clamp(35px,4.15vw,57px); letter-spacing: -.064em; line-height: .98; font-weight: 800; margin: 0 0 20px; }
+.product-copy p { color: var(--muted); font-size: 14px; line-height: 1.74; max-width: 560px; margin: 0 0 23px; }
+.product-demo { border: 1px solid #3b5e59; background: #09181d; padding: 15px; min-width: 0; }
+.product-demo-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-bottom: 12px; margin-bottom: 13px; border-bottom: 1px solid #304b49; font: 9px var(--font-mono); color: #9ecabc; letter-spacing: .04em; }
+.product-lane { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
+.product-stage { display: flex; flex-direction: column; gap: 11px; min-width: 0; min-height: 132px; padding: 13px 10px; border: 1px solid #345751; background: #10282b; }
+.product-stage:nth-child(2) { background: #153331; }
+.product-stage:nth-child(3) { background: #12282c; }
+.product-stage > span { color: var(--orange); font: 10px var(--font-mono); }
+.product-stage strong { color: var(--mint); font: 750 11px/1.3 var(--font-mono); letter-spacing: .02em; }
+.product-stage small { color: #adc6c0; font: 9px/1.5 var(--font-mono); }
+.product-demo-foot { margin: 13px 0 0; color: #8fabaa; font: 9px/1.5 var(--font-mono); }
+@media (max-width: 700px) {
+  .product-content { grid-template-columns: 1fr; padding: 29px 22px; gap: 24px; }
+}
+@media (max-width: 480px) {
+  .product-content { padding: 24px 17px; }
+  .product-copy h3 { font-size: 39px; }
+  .product-demo { padding: 11px; }
+  .product-stage { min-height: 125px; padding: 10px 7px; }
+  .product-stage strong { font-size: 9px; }
+  .product-stage small { font-size: 8px; }
+}
+
+/* Quantified career context, not a résumé wall */
+.about-proof { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin: 23px 0 24px; }
+.about-proof > div { display: grid; gap: 7px; min-width: 0; border-left: 2px solid #719e92; background: rgba(179,242,205,.035); padding: 12px 13px; }
+.about-proof strong { color: var(--mint); font: 750 clamp(21px,2.1vw,27px)/1.2 var(--font-mono); letter-spacing: -.04em; }
+.about-proof span { color: #a4c0b8; font: 9px/1.5 var(--font-mono); letter-spacing: .03em; }
+
+/* Field notes */
+.notes-section { background: #0e191c; border-block: 1px solid #24383c; }
+.notes-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid #345052; border-bottom: 1px solid #345052; }
+.notes-filters { display: flex; align-items: stretch; flex-wrap: wrap; gap: 4px; }
+.filter-button { appearance: none; border: 0; color: #90aaa7; background: none; padding: 20px 15px; cursor: pointer; font: 10px var(--font-mono); letter-spacing: .04em; position: relative; }
+.filter-button:hover { color: var(--paper); }
+.filter-button.is-active { color: var(--mint); }
+.filter-button.is-active::after { content: ''; height: 2px; background: var(--mint); position: absolute; inset: auto 0 -1px; }
+.filter-button span { font-size: 9px; color: #638b84; }
+.notes-count { font: 10px var(--font-mono); white-space: nowrap; color: #7b9a96; margin: 0; }
+.note { display: grid; grid-template-columns: 76px minmax(0,1fr) 24px; gap: 25px; padding: 37px 6px 43px; border-bottom: 1px solid #2c4144; transition: background .2s; }
+.note:hover { background: rgba(161,209,188,.025); }
+.note-number { font: 12px var(--font-mono); color: #6a9288; padding-top: 5px; }
+.note-content { max-width: 1040px; }
+.note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 21px; font: 10px var(--font-mono); letter-spacing: .03em; color: #97ada8; margin-bottom: 18px; }
+.note-meta span { color: var(--orange); }
+.note h3 { font-size: clamp(24px,3vw,35px); line-height: 1.16; font-weight: 730; letter-spacing: -.043em; margin: 0 0 13px; }
+.note-content > p { font-size: 14px; line-height: 1.75; color: #9fb0ae; max-width: 860px; margin-bottom: 14px; }
+.note-content p.note-proof { font-size: 13px; margin: 15px 0 16px; color: #bfd0c6; }
+.note-proof span { font: 10px var(--font-mono); color: var(--mint); margin-right: 10px; white-space: nowrap; }
+.note-link { color: var(--mint); font: 10px var(--font-mono); letter-spacing: .02em; display: inline-flex; gap: 10px; align-items: center; padding-top: 3px; }
+.note-link:hover { color: white; }
+.note-link > span { font-size: 15px; }
+.note-indicator { font-size: 20px; color: #587b78; }
+
+/* Operating method */
+.method-section { padding-bottom: 132px; }
+.method-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 0; border: 1px solid #30474b; }
+.method-step { padding: 22px 21px 32px; background: linear-gradient(145deg,#142326,#101b1e); min-height: 280px; }
+.method-step + .method-step { border-left: 1px solid #30474b; }
+.step-number { font: 11px var(--font-mono); color: var(--mint); }
+.step-number span { color: #69817f; }
+.step-symbol { font-family: var(--font-mono); font-size: 51px; line-height: 1; font-weight: 300; color: var(--orange); margin-top: 45px; margin-bottom: 25px; }
+.method-step h3 { margin: 0 0 13px; font-size: 20px; letter-spacing: -.035em; }
+.method-step p { margin: 0; color: #99afaa; font-size: 12px; line-height: 1.65; }
+.method-principle { margin-top: 22px; display: flex; align-items: center; gap: 38px; border: 1px solid #3f5755; background: rgba(179,242,205,.055); padding: 33px; }
+.method-principle > span:first-child { flex: none; color: var(--mint); font: 10px var(--font-mono); letter-spacing: .05em; }
+.method-principle p { margin: 0; font-size: clamp(17px,2.2vw,26px); font-weight: 640; letter-spacing: -.035em; }
+.method-principle .rule-symbol { font-size: 38px; color: var(--orange); margin-left: auto; }
+
+/* About */
+.about-section { background: #132225; border-block: 1px solid #34494b; }
+.about-grid { display: grid; grid-template-columns: minmax(0,.83fr) minmax(0,1.17fr); align-items: center; gap: clamp(55px,9vw,145px); }
+.about-visual { aspect-ratio: 1.04; border: 1px solid #405b5a; background: linear-gradient(155deg,#102126,#0c191d); position: relative; display: grid; place-items: center; overflow: hidden; }
+.about-visual::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(to right,rgba(121,173,156,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(121,173,156,.05) 1px,transparent 1px); background-size: 30px 30px; }
+.about-visual::after { content: 'LAB // THE OPERATOR'; position: absolute; top: 18px; left: 20px; color: #789b95; font: 10px var(--font-mono); }
+.about-target { width: 300px; height: 300px; position: relative; display: grid; place-items: center; }
+.target-ring { position: absolute; border: 1px solid rgba(139,218,206,.45); border-radius: 50%; }
+.ring-one { inset: 0; border-style: dashed; }
+.ring-two { inset: 35px; }
+.ring-three { inset: 75px; border-color: rgba(139,218,206,.75); }
+.target-cross { position: absolute; background: rgba(179,242,205,.24); }
+.cross-x { height: 1px; width: 100%; }
+.cross-y { width: 1px; height: 100%; }
+.target-core { color: var(--mint); font-size: 72px; letter-spacing: -.09em; font-weight: 780; z-index: 1; }
+.target-core span { color: var(--orange); }
+.about-visual-label { position: absolute; left: 20px; bottom: 20px; color: #95b2aa; font: 10px var(--font-mono); letter-spacing: .04em; }
+.about-copy h2 { margin-bottom: 29px; }
+.about-copy > p:not(.section-index) { font-size: 15px; line-height: 1.75; color: var(--muted); max-width: 600px; margin-bottom: 16px; }
+.about-copy > p.about-lead { font-size: 21px; line-height: 1.5; font-weight: 620; color: #e4ebde; letter-spacing: -.03em; margin-bottom: 18px; }
+.about-copy .button { margin-top: 20px; }
+
+/* Closing */
+.closing-section { padding-block: 112px 93px; }
+.closing-top, .closing-bottom { display: flex; justify-content: space-between; align-items: center; gap: 15px; font: 10px var(--font-mono); letter-spacing: .05em; color: #86a39d; }
+.closing-top > span:first-child { display: inline-flex; align-items: center; gap: 10px; }
+.closing-section > p { margin: 46px 0; font-size: clamp(43px,7.25vw,104px); line-height: 1.04; font-weight: 800; letter-spacing: -.078em; }
+.closing-section em { color: var(--mint); font-style: normal; }
+.closing-bottom { border-top: 1px solid #405251; padding-top: 20px; }
+.closing-bottom a { color: var(--mint); }
+.closing-bottom a:hover { color: white; }
+.site-footer { background: #101b1e; border-top: 1px solid #344547; }
+.footer-inner { min-height: 104px; display: flex; flex-wrap: wrap; align-items: center; gap: 20px; justify-content: space-between; }
+.footer-identity { display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 750; letter-spacing: .025em; }
+.footer-identity > span:last-child { display: grid; gap: 6px; }
+.footer-identity small { color: #789392; font: 9px var(--font-mono); }
+.footer-emblem { font-size: 34px; color: var(--mint); }
+.footer-privacy { font: 9px/1.5 var(--font-mono); color: #708c89; }
+.site-footer a { font: 10px var(--font-mono); color: var(--mint); }
+.site-footer a:hover { color: white; }
+
+@media (max-width: 1240px) {
+  .brand-copy span { display: none; }
+  .site-nav { gap: 16px; }
+  .container { width: min(1280px, calc(100% - 64px)); }
+  h1 { font-size: clamp(65px,7.2vw,90px); }
+  .hero { gap: 35px; }
+  .project-featured { grid-column: span 7; }
+  .project-sprocket { grid-column: span 5; }
+  .instrument-results div { padding-left: 11px; }
+  .instrument-results span { font-size: 8px; }
+  .project-topline { padding-inline: 18px; }
+  .project-description { padding-inline: 23px; }
+  .project-footer { padding-inline: 18px; }
+}
+@media (max-width: 1040px) {
+  .hero { grid-template-columns: 1fr; padding-top: 88px; padding-bottom: 82px; gap: 64px; }
+  .hero-instrument { width: min(100%,710px); margin: 0 auto; }
+  .hero-meta { margin-top: 48px; }
+  .waveform { height: 290px; }
+  .project-featured,.project-sprocket { grid-column: span 6; }
+  .project-description h3 { font-size: 48px; }
+  .project-topline { flex-wrap: wrap; }
+  .visual-video { margin: 0 15px 20px; }
+  .terminal-card { margin: 6px 16px 20px; }
+  .method-step { padding: 18px 14px 25px; }
+  .step-symbol { font-size: 44px; }
+}
+@media (max-width: 840px) {
+  .container { width: calc(100% - 44px); }
+  .site-header { height: 75px; }
+  .brand-copy span { display: grid; }
+  .menu-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 43px; height: 43px; color: var(--mint); background: none; border: 1px solid #42605c; cursor: pointer; }
+  .menu-toggle span { display: block; width: 19px; height: 1.5px; background: var(--mint); transition: transform .2s, opacity .2s; }
+  .menu-toggle[aria-expanded='true'] span:first-child { transform: translateY(6.5px) rotate(45deg); }
+  .menu-toggle[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+  .menu-toggle[aria-expanded='true'] span:last-child { transform: translateY(-6.5px) rotate(-45deg); }
+  .site-nav { display: none; position: absolute; left: 0; right: 0; top: 75px; padding: 19px 22px 27px; background: #0c181b; border-bottom: 1px solid #3a5354; flex-direction: column; gap: 0; align-items: stretch; box-shadow: 0 30px 40px #050b0ebf; }
+  .site-nav.is-open { display: flex; }
+  .site-nav a { font-size: 13px; padding: 16px 7px; border-bottom: 1px solid #2b4042; }
+  .site-nav .nav-external { margin-left: 0; padding-left: 7px; }
+  h1 { font-size: clamp(65px,11vw,91px); }
+  .section { padding-block: 98px; }
+  .section-intro { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .section-intro > p { max-width: 520px; }
+  .method-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .method-step:nth-child(4) { border-left: 0; border-top: 1px solid #30474b; }
+  .method-step:nth-child(5) { border-top: 1px solid #30474b; }
+  .about-grid { gap: 40px; }
+  .about-target { transform: scale(.8); }
+  .footer-inner { padding-block: 24px; }
+}
+@media (max-width: 700px) {
+  .harness-content { grid-template-columns: 1fr; padding: 27px 21px; gap: 25px; }
+  .project-featured,.project-sprocket,.project-small { grid-column: span 12; min-height: auto; }
+  .project-featured { min-height: 0; }
+  .project-sprocket { min-height: 0; }
+  .project-description h3 { font-size: 49px; }
+  .project-body { display: block; }
+  .visual-video { margin: 0 22px 25px; }
+  .video-demo { height: 215px; }
+  .terminal-card { margin: 10px 22px 26px; }
+  .small-project-visual { height: 130px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-visual { width: min(100%,430px); margin: 0 auto; }
+  .about-copy { padding-top: 22px; }
+  .note { grid-template-columns: 35px minmax(0,1fr); gap: 12px; }
+  .note-indicator { display: none; }
+  .note h3 { font-size: 26px; }
+  .notes-toolbar { flex-direction: column; align-items: flex-start; }
+  .notes-count { align-self: flex-end; padding-bottom: 11px; }
+  .method-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .method-step:nth-child(3) { border-top: 1px solid #30474b; border-left: 0; }
+  .method-step:nth-child(4) { border-top: 1px solid #30474b; border-left: 1px solid #30474b; }
+  .method-step:nth-child(5) { border-top: 1px solid #30474b; border-left: 0; }
+  .method-step { min-height: 242px; }
+  .step-symbol { margin-top: 24px; }
+  .method-principle { flex-wrap: wrap; gap: 17px; }
+  .method-principle .rule-symbol { margin-left: auto; }
+  .marquee-inner > span:nth-child(n+6) { display: none; }
+  .marquee-inner { gap: 8px; justify-content: space-between; font-size: 8px; }
+  .closing-section > p { font-size: clamp(40px,8vw,70px); }
+}
+@media (max-width: 480px) {
+  .harness-content { padding: 24px 17px; }
+  .harness-copy h3 { font-size: 40px; }
+  .harness-step { flex-wrap: wrap; gap: 7px 10px; padding: 11px 12px; }
+  .harness-step small { width: 100%; margin-left: 27px; text-align: left; }
+  .about-proof { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .about-proof > div { padding: 10px; }
+  .about-proof strong { font-size: 19px; }
+  .about-proof span { font-size: 8px; }
+  .container { width: calc(100% - 34px); }
+  .brand { gap: 9px; }
+  .brand-icon { width: 34px; height: 34px; }
+  .brand-copy strong { font-size: 12px; }
+  .brand-copy span { font-size: 6.8px; }
+  .hero { padding-top: 70px; padding-bottom: 69px; gap: 50px; }
+  .eyebrow { font-size: 9px; gap: 6px; }
+  h1 { font-size: clamp(51px, 12.5vw, 64px); margin-top: 22px; margin-bottom: 24px; }
+  .hero-intro { font-size: 20px; }
+  .hero-detail { font-size: 14px; }
+  .hero-buttons { gap: 16px; margin-top: 26px; }
+  .button { width: 100%; }
+  .button-text { justify-content: flex-start; }
+  .hero-meta { margin-top: 38px; gap: 20px 33px; }
+  .hero-meta strong { font-size: 9px; }
+  .instrument-top { padding: 15px 12px; font-size: 8px; }
+  .instrument-screen { padding: 16px 11px 12px; }
+  .screen-labels { font-size: 8px; }
+  .waveform { height: 215px; }
+  .screen-bottom { gap: 12px; }
+  .screen-bottom .screen-unit { margin-left: 0; }
+  .instrument-results div { padding: 14px 7px; }
+  .instrument-results span { font-size: 7px; }
+  .instrument-results strong { font-size: 10px; }
+  .instrument-foot { padding: 14px 11px; font-size: 8px; }
+  .marquee-inner { gap: 8px; }
+  .marquee-inner > span:nth-child(n+4) { display: none; }
+  .section { padding-block: 74px; }
+  .section-intro { margin-bottom: 34px; }
+  h2 { font-size: 42px; }
+  .project-topline { padding: 16px 15px; font-size: 9px; }
+  .project-description { padding: 24px 18px; }
+  .project-description h3 { font-size: 43px; }
+  .project-description p { font-size: 13px; }
+  .visual-video { margin: 0 13px 22px; }
+  .video-demo { height: 178px; }
+  .video-bottom { font-size: 7px; }
+  .project-footer { padding: 18px 14px; align-items: flex-start; flex-direction: column; gap: 14px; }
+  .terminal-card { margin: 0 14px 24px; }
+  .terminal-lines { font-size: 9px; }
+  .small-project-text { padding-inline: 18px; }
+  .notes-filters { gap: 0; }
+  .filter-button { padding: 17px 10px; font-size: 9px; }
+  .note { padding-block: 33px; }
+  .note-content > p { font-size: 13px; }
+  .note-meta { gap: 10px; font-size: 9px; }
+  .note h3 { font-size: 24px; }
+  .note-proof span { display: block; margin-bottom: 6px; }
+  .method-step { min-height: 245px; padding: 17px 12px 22px; }
+  .method-step h3 { font-size: 19px; }
+  .method-step p { font-size: 11px; }
+  .method-principle { padding: 22px; }
+  .method-principle p { font-size: 19px; }
+  .about-target { transform: scale(.72); }
+  .closing-section { padding-block: 85px 74px; }
+  .closing-top, .closing-bottom { font-size: 8px; }
+  .closing-top > span:last-child { display: none; }
+  .closing-section > p { font-size: 11vw; letter-spacing: -.07em; }
+  .footer-privacy { max-width: 300px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
 </style>
+
+  <title>The Test Bench — Tom Dolgos</title>
 </head>
 <body>
-<header><nav class="wrap"><a class="brand" href="/">THE <span>TEST BENCH</span></a><div class="links"><a href="#instruments">Instruments</a><a href="#method">Method</a><a href="https://thomas-dolgos-site.onrender.com/">Professional site ↗</a></div></nav></header>
-<main>
-<div class="wrap hero">
-<div class="eyebrow">Independent AI evaluation &amp; reliability experiments</div>
-<h1>Find the frame.<br><em>Verify the failure.</em></h1>
-<p class="lede">Interactive research tools for examining what computer-vision and multimodal systems report, what the evidence actually shows, and what remains uncertain.</p>
-<div class="actions"><a class="button" href="#instruments">Explore instruments ↓</a><a class="button outline" href="https://thomas-dolgos-site.onrender.com/work.html">View project case studies ↗</a></div>
-</div>
-<section id="instruments"><div class="wrap">
-<div class="eyebrow">Browse the instruments</div><h2>Build the test. Inspect the result.</h2>
-<p class="section-intro">Each tool is an independent experiment. A detected anomaly is a candidate finding, not proof of an actual model failure. Open the instruments to inspect their current capabilities and limitations.</p>
-<div class="grid">
-<article class="card"><div class="tag">Video evaluation</div><h3>Video Failure Lab</h3><p>Investigate count anomalies, detector mistakes, temporal evidence and reviewer corrections in video.</p><a href="https://video-failure-lab.onrender.com/">Open Video Failure Lab ↗</a></article>
-<article class="card"><div class="tag">Search &amp; visual grounding</div><h3>Product Match Bench</h3><p>Find product candidates from an image or video while distinguishing unverified visual resemblance, exact identity and potential substitutes.</p><a href="https://product-match-bench.onrender.com/">Open Product Match Bench ↗</a></article>
-<article class="card"><div class="tag">Tracking &amp; event measurement</div><h3>Event Integrity Bench</h3><p>Explore temporal event marking, hand-reviewed subject regions and measurement limitations. Experimental tracking findings require verification.</p><a href="https://event-integrity-bench.onrender.com/">Open Event Integrity Bench ↗</a></article>
-<article class="card"><div class="tag">Professional portfolio</div><h3>Research notes &amp; project documentation</h3><p>Methods, limitations and independent demonstrations of evaluation and reliability work.</p><a href="https://thomas-dolgos-site.onrender.com/work.html">Review project notes ↗</a></article>
-</div>
-</div></section>
-<section id="method"><div class="wrap">
-<div class="eyebrow">Evidence-first engineering</div><h2>Models don’t fail randomly. I analyze why.</h2>
-<p class="section-intro">Wrong → Proof → Bucket → Badness → Count → Fix. Separate the model, input, rubric, annotation, evaluator and workflow before assigning a failure cause.</p>
-<div class="note"><strong style="color:#e8f2f5">Research-stage tools.</strong> Test results, automated detections and plausible visual matches do not independently establish ground truth. No confidential client materials or private development code belong in this public site.</div>
-</div></section>
-</main>
-<footer><div class="wrap">The Test Bench · Thomas Dolgos · Independent AI reliability and technical QA experiments. <a href="https://thomas-dolgos-site.onrender.com/">Professional website ↗</a></div></footer>
-</body></html>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div class="ambient-grid" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <div class="header-inner container">
+      <a class="brand" href="#top" aria-label="The Test Bench — back to top">
+        <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M6 12V6h28v6M20 6v28M10 21h20M6 28v6h28v-6" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="21" r="3" fill="currentColor"/></svg></span>
+        <span class="brand-copy"><strong>THE TEST BENCH</strong><span>AN INDEPENDENT ENGINEERING WORKSHOP</span></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <a href="#work">WORK <span>01</span></a>
+        <a href="#notes">FIELD NOTES <span>02</span></a>
+        <a href="#method">METHOD <span>03</span></a>
+        <a href="#about">ABOUT <span>04</span></a>
+        <a href="https://product-match-bench.onrender.com/" target="_blank" rel="noopener noreferrer" class="nav-external" aria-label="Open AI Search / Product Match Bench in a new tab">AI SEARCH <svg class="arrow-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16L16 4M6 4h10v10"/></svg></a>
+        <a href="https://thomas-dolgos-site.onrender.com/" target="_blank" rel="noopener noreferrer" class="nav-external">PORTFOLIO <svg class="arrow-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16L16 4M6 4h10v10"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="square-led" aria-hidden="true"></span> OPEN WORKSHOP <span class="eyebrow-divider">/</span> EST. 2026 <span class="eyebrow-divider">/</span> LAB_001</div>
+        <h1 id="hero-heading">BUILD IT.<br>BREAK IT.<br><span class="hero-accent">PROVE IT<span class="period">.</span></span></h1>
+        <p class="hero-intro">The interesting question isn't whether we can build something. It's whether it actually works.</p>
+        <p class="hero-detail">Multimodal AI quality, adversarial benchmark design, computer vision, and systems reliability. Find the failure mode. Ground the evidence. Test the fix.</p>
+        <div class="hero-buttons">
+          <a class="button button-primary" href="#work">EXPLORE THE WORK <svg class="arrow-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
+          <a class="button button-text" href="#notes">READ THE FIELD NOTES <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-meta"><div><span>OPERATOR</span><strong>TOM DOLGOS</strong></div><div><span>FOCUS</span><strong>MULTIMODAL QA × RELIABILITY</strong></div><div><span>WORKING RULE</span><strong>SHOW THE EVIDENCE</strong></div></div>
+      </div>
+      <div class="hero-instrument" aria-label="Illustrative diagnostic instrument: two simulated signals and four inspection stages">
+        <div class="instrument-top"><span><i class="signal-led" aria-hidden="true"></i> INSPECTION / 001</span><span>SIMULATED INPUT <span class="instrument-squares" aria-hidden="true">▮▮▯</span></span></div>
+        <div class="instrument-screen">
+          <div class="screen-labels"><span>OSC / REFERENCE</span><span>CH A // CH B</span></div>
+          <svg class="waveform" viewBox="0 0 560 296" preserveAspectRatio="none" role="img" aria-label="Decorative reference and observed waveforms over a grid; no live measurement">
+            <defs>
+              <pattern id="minorGrid" width="28" height="29.6" patternUnits="userSpaceOnUse"><path d="M28 0H0V29.6" fill="none" stroke="#23434a" stroke-width=".6" opacity=".65"/></pattern>
+              <pattern id="majorGrid" width="112" height="59.2" patternUnits="userSpaceOnUse"><rect width="112" height="59.2" fill="url(#minorGrid)"/><path d="M112 0H0V59.2" fill="none" stroke="#32616a" stroke-width=".9" opacity=".75"/></pattern>
+              <linearGradient id="waveGlow" x1="0" x2="1" y1="0" y2="0"><stop stop-color="#6ca9a4"/><stop offset=".56" stop-color="#a9efcb"/><stop offset="1" stop-color="#b7f7cf"/></linearGradient>
+              <linearGradient id="orangeGlow" x1="0" x2="1" y1="0" y2="0"><stop stop-color="#c88157"/><stop offset=".75" stop-color="#f4b874"/><stop offset="1" stop-color="#df8f69"/></linearGradient>
+            </defs>
+            <rect width="560" height="296" fill="url(#majorGrid)"/>
+            <line x1="0" y1="148" x2="560" y2="148" stroke="#8ed4bd" stroke-opacity=".4" stroke-dasharray="3 6"/>
+            <path class="reference-wave" d="M0 147 L12 132 L26 110 L40 135 L56 176 L74 180 L88 135 L103 92 L120 131 L134 168 L150 159 L164 131 L178 123 L192 147 L205 172 L218 155 L235 112 L251 126 L269 174 L286 175 L303 142 L318 98 L334 120 L352 168 L367 155 L383 139 L397 143 L411 154 L427 144 L443 122 L458 134 L473 169 L488 157 L503 132 L518 120 L535 142 L548 161 L560 148" fill="none" stroke="url(#waveGlow)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="comparison-wave" d="M0 208 L17 207 L29 188 L43 219 L57 195 L73 201 L88 190 L103 212 L120 204 L135 190 L150 202 L163 212 L179 181 L194 213 L210 203 L225 191 L240 205 L256 200 L270 189 L285 210 L303 195 L318 215 L334 196 L350 205 L367 190 L382 199 L396 187 L411 202 L426 196 L442 184 L459 205 L473 203 L488 191 L502 207 L519 190 L534 206 L547 196 L560 198" fill="none" stroke="url(#orangeGlow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".84"/>
+            <circle cx="318" cy="98" r="6" fill="#a9efcb" opacity=".16"/><circle cx="318" cy="98" r="2.2" fill="#a9efcb"/>
+            <path d="M318 98V66h48" stroke="#a9efcb" stroke-width="1" opacity=".8" fill="none"/><text x="370" y="70" font-family="monospace" fill="#a9efcb" font-size="11">EVENT</text>
+            <g font-family="monospace" fill="#647f85" font-size="10"><text x="6" y="15">+1.0</text><text x="6" y="142">0.0</text><text x="6" y="282">-1.0</text><text x="504" y="282">T → 00:12</text></g>
+          </svg>
+          <div class="screen-bottom"><span><i class="legend-line mint" aria-hidden="true"></i> REFERENCE</span><span><i class="legend-line orange" aria-hidden="true"></i> OBSERVED</span><span class="screen-unit">NOT LIVE DATA</span></div>
+        </div>
+        <div class="instrument-results"><div><span>01 / OBSERVE</span><strong>CAPTURE</strong></div><div><span>02 / CHALLENGE</span><strong>COMPARE</strong></div><div><span>03 / VERIFY</span><strong>REPRODUCE</strong></div></div>
+        <div class="instrument-foot"><span>NO MAGIC SCORES.</span><span>EVIDENCE FIRST. <span aria-hidden="true">↗</span></span></div>
+      </div>
+    </section>
+
+    <div class="marquee-line" aria-hidden="true"><div class="container marquee-inner"><span>// ESTABLISH GROUND TRUTH</span><span class="marquee-cross">✳</span><span>TEST THE FAILURE MODES</span><span class="marquee-cross">✳</span><span>DOCUMENT THE LIMITS</span><span class="marquee-cross">✳</span><span>REPEAT</span></div></div>
+
+    <section id="work" class="section work-section container" aria-labelledby="work-title">
+      <div class="section-intro"><div><p class="section-index">SECTION 01 <span>/</span> CURRENT WORK</p><h2 id="work-title">Things on the <span class="muted-word">bench.</span></h2></div><p>No speculative product claims. A clear view of what's live, what's experimental, and what's still an idea.</p></div>
+      <div class="projects-grid">
+        <article class="project-card project-featured">
+          <div class="project-topline"><span>01 / COMPUTER VISION</span><span class="state state-live"><span class="state-dot"></span> LIVE PROTOTYPE</span></div>
+          <div class="project-body"><div class="project-description"><h3>Video<br>Failure Lab<span class="title-dot">.</span></h3><p>A local-first video workbench for surfacing candidate anomalies, inspecting frame-level evidence, and separating automated observations from human judgments.</p><div class="project-tags"><span>VIDEO TRIAGE</span><span>EVIDENCE REVIEW</span><span>JAVASCRIPT</span></div></div>
+            <div class="visual-video" aria-label="Decorative depiction of sampled video frames with candidate object boxes">
+              <div class="video-top"><span>FRAME INSPECTION</span><span>DEMO / 01</span></div>
+              <svg viewBox="0 0 370 212" aria-hidden="true" class="video-demo"><defs><pattern id="viewLines" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0H0V16" stroke="#427278" fill="none" stroke-width=".6" opacity=".4"/></pattern><linearGradient id="vbg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#18434a"/><stop offset="1" stop-color="#071b20"/></linearGradient></defs><rect width="370" height="212" rx="5" fill="url(#vbg)"/><rect width="370" height="212" fill="url(#viewLines)"/><path d="M0 161L58 103L125 139L197 76L265 132L370 65V212H0Z" fill="#1d4e52" opacity=".7"/><path d="M0 191L76 144L160 180L233 107L370 173V212H0Z" fill="#28595a" opacity=".8"/><g fill="none" stroke="#a6edc9" stroke-width="1.5"><rect x="84" y="62" width="59" height="117"/><rect x="182" y="44" width="58" height="126"/><rect x="264" y="75" width="50" height="98"/></g><g fill="#a6edc9" font-family="monospace" font-size="10"><text x="86" y="57">PERSON .92</text><text x="184" y="39">PERSON .87</text><text x="266" y="70">PERSON .81</text></g><path d="M11 14h22M11 14v22M359 14h-22M359 14v22M11 198h22M11 198v-22M359 198h-22M359 198v-22" stroke="#bdeccf" stroke-width="1.5" fill="none" opacity=".7"/><rect x="12" y="186" width="82" height="16" rx="2" fill="#0b1a1b"/><text x="18" y="197" fill="#9bdcc4" font-family="monospace" font-size="9">T+00:01.500</text></svg>
+              <div class="video-timeline"><span class="tick"></span><span class="timeline-bar"><i></i></span><span class="timecode">00:03</span></div>
+              <div class="video-bottom"><span><i class="mini-square" aria-hidden="true"></i> DETECTIONS = OBSERVATIONS</span><span>NOT VERDICTS</span></div>
+            </div>
+          </div>
+          <div class="project-footer"><span class="project-caption">STATUS: V0.2 LIVE · V0.3 UNDER REVIEW</span><a href="https://video-failure-lab.onrender.com/" target="_blank" rel="noopener noreferrer" class="arrow-link">OPEN THE PROTOTYPE <span aria-hidden="true">↗</span></a></div>
+        </article>
+        <article class="project-card project-sprocket">
+          <div class="project-topline"><span>02 / AUTONOMOUS RESEARCH</span><span class="state state-test"><span class="state-dot"></span> EXPERIMENTAL</span></div>
+          <div class="project-description"><h3>Meet<br>Sprocket<span class="title-dot">.</span> <span class="sprocket-symbol" aria-hidden="true">✳</span></h3><p>A read-only code scout. Give it a problem; it searches public repositories, inspects limited evidence, and reports what might be worth testing.</p><div class="project-tags"><span>RESEARCH AGENT</span><span>GITHUB</span><span>HUMAN REVIEW</span></div></div>
+          <div class="terminal-card" aria-label="Illustrative output from Sprocket's first discovery test"><div class="terminal-header"><span><i></i><i></i><i></i></span><span>SPROCKET / FIRST RUN</span></div><div class="terminal-lines"><p><span class="prompt">›</span> RESEARCH TASK: BROWSER ROI</p><p><span class="terminal-dim">[01]</span> SEARCH PUBLIC REPOS <span class="terminal-ok">OK</span></p><p><span class="terminal-dim">[02]</span> CANDIDATES FOUND <strong>04</strong></p><p><span class="terminal-dim">[03]</span> GITHUB READS <strong>17</strong></p><p><span class="terminal-dim">[04]</span> EVIDENCE REPORT <span class="terminal-ok">SAVED</span></p><p class="terminal-cursor">_<span></span></p></div></div>
+          <div class="project-footer"><span class="project-caption">SOURCE / DEVELOPMENT CURRENTLY PRIVATE</span><a href="#note-sprocket" class="arrow-link">READ THE FIELD NOTE <span aria-hidden="true">↗</span></a></div>
+        </article>
+        <article class="project-card project-product" id="product-match-bench" aria-labelledby="product-match-title">
+          <div class="project-topline"><span>03 / AI PRODUCT DISCOVERY</span><span class="state state-test"><span class="state-dot"></span> LIVE EXPERIMENT</span></div>
+          <div class="product-content">
+            <div class="product-copy">
+              <h3 id="product-match-title">Product Match<br>Bench<span class="title-dot">.</span></h3>
+              <p>AI-assisted product discovery from images and video. Sample frames, identify candidate objects, and search product listings without drawing every box yourself. Review exact matches and possible substitutes separately; visual similarity is not verification.</p>
+              <div class="project-tags"><span>MULTI-FRAME VISION</span><span>PRODUCT RETRIEVAL</span><span>HUMAN REVIEW</span></div>
+            </div>
+            <div class="product-demo" aria-label="Illustrative product-search workflow, not live search results">
+              <div class="product-demo-top"><span>AI SEARCH / WORKFLOW</span><span>ILLUSTRATIVE · NOT LIVE DATA</span></div>
+              <div class="product-lane">
+                <div class="product-stage"><span>01 / INPUT</span><strong>PHOTO<br>OR VIDEO</strong><small>Select a source</small></div>
+                <div class="product-stage"><span>02 / VISION</span><strong>FIND<br>OBJECTS</strong><small>Suggest items</small></div>
+                <div class="product-stage"><span>03 / REVIEW</span><strong>PRODUCT<br>LISTINGS</strong><small>Check evidence</small></div>
+              </div>
+              <p class="product-demo-foot">SEARCH RESULTS ARE LEADS, NOT VERIFIED PRODUCTS OR FITMENT CLAIMS.</p>
+            </div>
+          </div>
+          <div class="project-footer"><span class="project-caption">V0.6 HOSTED · EXPERIMENTAL · AUTHORIZED MEDIA ONLY</span><a href="https://product-match-bench.onrender.com/" target="_blank" rel="noopener noreferrer" class="arrow-link" aria-label="Open the Product Match Bench AI Search application in a new tab">OPEN AI SEARCH <span aria-hidden="true">↗</span></a></div>
+        </article>
+        <article class="project-card project-harness">
+          <div class="project-topline"><span>04 / EVALUATION ENGINEERING</span><span class="state state-test"><span class="state-dot"></span> REGRESSION-TESTED PROTOTYPE</span></div>
+          <div class="harness-content">
+            <div class="harness-copy">
+              <h3>AI Evaluation<br>Harness<span class="title-dot">.</span></h3>
+              <p>An evidence-grounded QA framework built with Python and pytest. Deterministic checks identify unsupported numeric and named-entity specificity, while regression tests turn discovered evaluator weaknesses into repeatable checks.</p>
+              <div class="project-tags"><span>PYTHON / PYTEST</span><span>GROUNDING CHECKS</span><span>FAILURE TAXONOMY</span></div>
+            </div>
+            <div class="harness-flow" aria-label="Evaluation workflow: inspect evidence, classify failure, rate severity, determine disposition">
+              <div class="harness-step"><span>01</span><strong>EVIDENCE</strong><small>WHAT CAN BE SUPPORTED?</small></div>
+              <div class="harness-step"><span>02</span><strong>FAILURE TYPE</strong><small>WHAT ACTUALLY BROKE?</small></div>
+              <div class="harness-step"><span>03</span><strong>SEVERITY</strong><small>HOW MUCH DOES IT MATTER?</small></div>
+              <div class="harness-step"><span>04</span><strong>DISPOSITION</strong><small>FIX / FLAG / RETEST</small></div>
+              <p class="harness-caption">A verdict without traceable evidence is another thing to test.</p>
+            </div>
+          </div>
+          <div class="project-footer"><span class="project-caption">STATUS: WORKING PORTFOLIO PROJECT · SOURCE CURRENTLY PRIVATE</span><a href="#method" class="arrow-link">SEE THE EVALUATION METHOD <span aria-hidden="true">↗</span></a></div>
+        </article>
+        <article class="project-card project-small project-signal">
+          <div class="project-topline"><span>05 / SIGNAL PROCESSING</span><span class="state state-concept">ON THE DRAWING BOARD</span></div>
+          <div class="small-project-visual" aria-hidden="true"><svg viewBox="0 0 430 110" preserveAspectRatio="none"><path d="M0 56L18 57L34 52L46 63L58 47L70 55L82 57L96 29L108 83L123 55L137 45L149 66L162 56L178 54L188 21L201 95L214 56L228 49L240 64L251 56L263 55L276 29L287 78L298 55L312 50L324 62L338 56L351 49L361 65L373 56L385 41L401 68L415 54L430 56" stroke="#dbb486" stroke-width="2" fill="none"/><path d="M0 56H430" stroke="#dbb486" stroke-width=".7" opacity=".27"/><path d="M60 0V110M120 0V110M180 0V110M240 0V110M300 0V110M360 0V110" stroke="#487077" stroke-width=".6" stroke-dasharray="2 5"/></svg><span>FFT // VIBRATION // CONDITION MONITORING</span></div>
+          <div class="small-project-text"><h3>Signal Lab</h3><p>Revisiting vibration analysis and signal-processing tools through modern, testable software.</p><span class="concept-note">IDEA / NOT YET BUILT</span></div>
+        </article>
+        <article class="project-card project-small project-network">
+          <div class="project-topline"><span>06 / NETWORK OBSERVABILITY</span><span class="state state-concept">ON THE DRAWING BOARD</span></div>
+          <div class="small-project-visual network-visual" aria-hidden="true"><svg viewBox="0 0 430 110"><g stroke="#5c8b92" stroke-width="1.2" opacity=".7"><path d="M42 46L114 23L188 61L258 22L336 43L400 16M114 23L166 12M188 61L238 95L336 43L400 95M42 46L75 95L188 61"/></g><g fill="#173740" stroke="#7cd5c6" stroke-width="1.4"><circle cx="42" cy="46" r="7"/><circle cx="114" cy="23" r="7"/><circle cx="166" cy="12" r="5"/><circle cx="188" cy="61" r="10"/><circle cx="258" cy="22" r="6"/><circle cx="336" cy="43" r="8"/><circle cx="400" cy="16" r="5"/><circle cx="238" cy="95" r="6"/><circle cx="400" cy="95" r="5"/><circle cx="75" cy="95" r="5"/></g><circle cx="188" cy="61" r="23" fill="none" stroke="#82dfd1" opacity=".3" stroke-dasharray="3 5"/></svg><span>INVENTORY // BASELINE // INVESTIGATE</span></div>
+          <div class="small-project-text"><h3>Network Lab</h3><p>Making sense of network conversations and anomalies on systems we own or are authorized to examine.</p><span class="concept-note">IDEA / NOT YET BUILT</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="notes" class="section notes-section" aria-labelledby="notes-title"><div class="container"><div class="section-intro"><div><p class="section-index">SECTION 02 <span>/</span> ENGINEERING LOG</p><h2 id="notes-title">Field notes<span class="title-dot">.</span></h2></div><p>Not press releases. What we tried, what failed, what the evidence actually supports.</p></div>
+      <div class="notes-toolbar"><div class="notes-filters" role="group" aria-label="Filter field notes"><button type="button" class="filter-button is-active" data-filter="all" aria-pressed="true">ALL <span>04</span></button><button type="button" class="filter-button" data-filter="testing" aria-pressed="false">TESTING</button><button type="button" class="filter-button" data-filter="research" aria-pressed="false">RESEARCH</button><button type="button" class="filter-button" data-filter="observation" aria-pressed="false">OBSERVATIONS</button></div><p class="notes-count" id="notes-count" aria-live="polite">SHOWING 04 / 04</p></div>
+      <div class="notes-list">
+        <article class="note" data-category="testing" id="note-browser"><span class="note-number">001</span><div class="note-content"><div class="note-meta"><time datetime="2026-10-18">18 OCT 2026</time><span>TESTING / BROWSER</span></div><h3>When the test environment was the failure.</h3><p>Our browser smoke test stopped at video loading. Instead of changing the application blindly, we checked decoder support: that headless Chromium build didn't support H.264. Swapping the synthetic fixture to VP8/WebM let us test the actual workflow.</p><p class="note-proof"><span>OBSERVED RESULT</span> Both JavaScript regressions and browser smoke checks passed; real-world detector accuracy remains unverified. Detailed CI logs are retained privately.</p><a href="https://video-failure-lab.onrender.com/" target="_blank" rel="noopener noreferrer" class="note-link">OPEN LIVE PROTOTYPE <span aria-hidden="true">↗</span></a></div><span class="note-indicator" aria-hidden="true">↗</span></article>
+        <article class="note" data-category="research" id="note-sprocket"><span class="note-number">002</span><div class="note-content"><div class="note-meta"><time datetime="2026-10-18">18 OCT 2026</time><span>RESEARCH / AGENTS</span></div><h3>Sprocket's first assignment: find code, not excuses.</h3><p>The first overly narrow repository search returned nothing. We widened the queries, kept the scope bounded, and retrieved four candidates in seventeen GitHub reads. A useful start—not proof any candidate is the right implementation.</p><p class="note-proof"><span>OBSERVED RESULT</span> Read-only discovery ran successfully. Model-assisted assessment still needs a live API test. The underlying source and CI artifacts are currently private.</p><a href="#work" class="note-link">SEE SPROCKET WORKBENCH <span aria-hidden="true">↗</span></a></div><span class="note-indicator" aria-hidden="true">↗</span></article>
+        <article class="note" data-category="observation" id="note-context"><span class="note-number">003</span><div class="note-content"><div class="note-meta"><time datetime="2026-10-18">18 OCT 2026</time><span>OBSERVATION / VISION</span></div><h3>A picture of a person isn't another person.</h3><p>An object detector can mistake a printed figure or advertisement for someone physically present in a scene. Counting detections isn't the same as understanding the environment. Scene Context review makes it possible to flag and inspect those cases without pretending the model understood them.</p><p class="note-proof"><span>LESSON</span> Separate the observation from the conclusion—and keep the original detection evidence.</p><a href="https://video-failure-lab.onrender.com/" target="_blank" rel="noopener noreferrer" class="note-link">EXPLORE VIDEO FAILURE LAB <span aria-hidden="true">↗</span></a></div><span class="note-indicator" aria-hidden="true">↗</span></article>
+        <article class="note" data-category="observation" id="note-region"><span class="note-number">004</span><div class="note-content"><div class="note-meta"><time datetime="2026-10-18">18 OCT 2026</time><span>OBSERVATION / MEASUREMENT</span></div><h3>The interesting action was inside the television.</h3><p>When a phone records a screen, measuring changes across the entire camera frame can dilute what happens on the display. The next experiment is reviewer-selected Region of Interest analysis: measure the relevant pixels instead of everything around them.</p><p class="note-proof"><span>NEXT QUESTION</span> Can a simple fixed rectangle improve reproducibility without adding unnecessary complexity?</p><a href="#work" class="note-link">SEE THE PROJECT ROADMAP <span aria-hidden="true">↗</span></a></div><span class="note-indicator" aria-hidden="true">↗</span></article>
+      </div>
+      </div></section>
+
+    <section id="method" class="section method-section container" aria-labelledby="method-title"><div class="section-intro"><div><p class="section-index">SECTION 03 <span>/</span> THE OPERATING METHOD</p><h2 id="method-title">Less certainty.<br><span class="muted-word">Better evidence.</span></h2></div><p>Every good instrument has a measurement range. Every good evaluation has limitations.</p></div>
+      <div class="method-grid"><div class="method-step"><span class="step-number">01<span>/05</span></span><div class="step-symbol">◎</div><h3>Observe</h3><p>Capture what the system actually did. No conclusions smuggled into measurements.</p></div><div class="method-step"><span class="step-number">02<span>/05</span></span><div class="step-symbol">⌖</div><h3>Isolate</h3><p>Reduce a complicated situation to a testable event, region, or failure mode.</p></div><div class="method-step"><span class="step-number">03<span>/05</span></span><div class="step-symbol">≠</div><h3>Challenge</h3><p>Look for false positives, hidden assumptions, and alternative explanations.</p></div><div class="method-step"><span class="step-number">04<span>/05</span></span><div class="step-symbol">↻</div><h3>Reproduce</h3><p>Run the experiment again. A passing dashboard isn't a validated result.</p></div><div class="method-step"><span class="step-number">05<span>/05</span></span><div class="step-symbol">✓</div><h3>Report</h3><p>Show evidence, uncertainty, and what the tool still cannot tell us.</p></div></div>
+      <div class="method-principle"><span>SHOP RULE #001</span><p>Don't increase complexity faster than your ability to validate it.</p><span aria-hidden="true" class="rule-symbol">✳</span></div>
+    </section>
+
+    <section id="about" class="section about-section" aria-labelledby="about-title"><div class="container about-grid"><div class="about-visual" aria-hidden="true"><div class="about-target"><span class="target-ring ring-one"></span><span class="target-ring ring-two"></span><span class="target-ring ring-three"></span><span class="target-cross cross-x"></span><span class="target-cross cross-y"></span><span class="target-core">TD<span>.</span></span></div><span class="about-visual-label">INDEPENDENT BUILDER / SYSTEMS THINKER</span></div><div class="about-copy"><p class="section-index">SECTION 04 <span>/</span> THE OPERATOR</p><h2 id="about-title">Built by<br>Tom Dolgos<span class="title-dot">.</span></h2><p class="about-lead">A clean measurement and a correct conclusion are two different things.</p>
+            <p>My work spans image and caption grounding, robotics and first-person video QA, audio evaluation, adversarial benchmark design, and reviewer calibration. When an AI result is wrong, the useful question is <em>why</em>: model weakness, prompt ambiguity, annotation error, rubric conflict, or a flawed judge?</p>
+            <p>That perspective comes from more than two decades in industrial reliability, nondestructive testing, vibration analysis, repeatable data acquisition, technical procedures, and training. In both fields, an impressive-looking result is worthless if the measurement conditions cannot support it.</p>
+            <div class="about-proof" aria-label="Selected experience">
+              <div><strong>300+</strong><span>BENCHMARK TASKS SIGNED OFF IN 2026</span></div>
+              <div><strong>20+ YEARS</strong><span>INDUSTRIAL ENGINEERING RELIABILITY</span></div>
+            </div>
+            <p>The Test Bench is where that experience meets software experiments: isolate the failure mode, test competing explanations, preserve the evidence, and report the limits. An unsuccessful test belongs in the record too.</p><a href="https://thomas-dolgos-site.onrender.com/" target="_blank" rel="noopener noreferrer" class="button button-outline">VIEW PROFESSIONAL PORTFOLIO <svg class="arrow-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16L16 4M6 4h10v10"/></svg></a></div></div></section>
+
+    <section class="closing-section container" aria-label="Closing statement"><div class="closing-top"><span><i class="square-led" aria-hidden="true"></i> END OF REPORT</span><span>KEEP EXPERIMENTING // 2026—</span></div><p>THE DASHBOARD IS<br>NOT THE <em>GROUND TRUTH.</em></p><div class="closing-bottom"><span>BUILD. TEST. DOCUMENT. REPEAT.</span><a href="#top">BACK TO THE TOP <span aria-hidden="true">↑</span></a></div></section>
+  </main>
+  <footer class="site-footer"><div class="container footer-inner"><div class="footer-identity"><span class="footer-emblem" aria-hidden="true">✳</span><span>THE TEST BENCH <small>© <span id="year">2026</span> TOM DOLGOS</small></span></div><span class="footer-privacy">NO ANALYTICS SCRIPTS. NO TRACKING COOKIES. NO THIRD-PARTY ASSETS.</span><a href="https://video-failure-lab.onrender.com/" target="_blank" rel="noopener noreferrer">TRY THE VIDEO LAB ↗</a></div></footer>
+  <script>
+// The Test Bench: zero network calls, zero tracking, progressive enhancement only.
+(() => {
+  'use strict';
+
+  const year = document.getElementById('year');
+  if (year) year.textContent = String(new Date().getFullYear());
+
+  const menu = document.querySelector('.menu-toggle');
+  const nav = document.getElementById('site-nav');
+  if (menu && nav) {
+    const setMenu = (open) => {
+      menu.setAttribute('aria-expanded', String(open));
+      menu.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      nav.classList.toggle('is-open', open);
+      document.body.classList.toggle('menu-open', open);
+    };
+    menu.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') !== 'true'));
+    nav.addEventListener('click', (event) => {
+      if (event.target.closest('a')) setMenu(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setMenu(false);
+    });
+    window.matchMedia('(min-width: 841px)').addEventListener('change', (event) => {
+      if (event.matches) setMenu(false);
+    });
+  }
+
+  const filterButtons = [...document.querySelectorAll('[data-filter]')];
+  const notes = [...document.querySelectorAll('.note[data-category]')];
+  const notesCount = document.getElementById('notes-count');
+  filterButtons.forEach(button => button.addEventListener('click', () => {
+    const selected = button.dataset.filter;
+    filterButtons.forEach(item => {
+      const active = item === button;
+      item.classList.toggle('is-active', active);
+      item.setAttribute('aria-pressed', String(active));
+    });
+    let visible = 0;
+    notes.forEach(note => {
+      const show = selected === 'all' || note.dataset.category === selected;
+      note.hidden = !show;
+      if (show) visible += 1;
+    });
+    if (notesCount) notesCount.textContent = `SHOWING ${String(visible).padStart(2,'0')} / ${String(notes.length).padStart(2,'0')}`;
+  }));
+})();
+
+</script>
+</body>
+</html>
